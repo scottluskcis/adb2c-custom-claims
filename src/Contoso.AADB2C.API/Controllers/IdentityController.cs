@@ -24,7 +24,7 @@ namespace Contoso.AADB2C.API.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost("signup")]
         public async Task<IActionResult> SignUp()
         {
             try
