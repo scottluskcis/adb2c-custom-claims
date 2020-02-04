@@ -1,6 +1,6 @@
 # Azure AD B2C and Custom Claims
 
-Researching and testing out custom claims and policy in Azure AD B2C
+Researching and testing out custom claims and policy in Azure AD B2C using Identity Experience Framework
 
 ## Links used for Research
 
@@ -71,3 +71,4 @@ You will need to update the custom policies in Azure AD B2C
   * Replace `IdentityExperienceFrameworkAppId` with your App Id
   * Replace `facebook_clientid` with your Facebook client Id
   * Replace `your-app-name` in the URLs provided with your app name
+* Upload to your Azure AD B2C via Identity Experience Framework
