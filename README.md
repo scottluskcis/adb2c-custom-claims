@@ -20,6 +20,8 @@ testing out custom claims and policy in azure ad b2c
 
 ## AADB2C API
 
+### Getting Started
+
 Before completing this section be sure to follow all of the steps in [Get started with custom policies in Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-get-started?tabs=applications) including all [Prerequisites](https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-get-started?tabs=applications#prerequisites) mentioned on that page.
 
 Example API found in source code [Contoso.AADB2C.API](src/Contoso.AADB2C.API)
@@ -29,6 +31,8 @@ Ensure the project will build by cd to this directory and run the following:
 ```powershell
 dotnet build
 ```
+
+### Provisioning
 
 To provision an Azure App Service resource to host the API in Azure:
 
@@ -54,3 +58,16 @@ To provision an Azure App Service resource to host the API in Azure:
   * Select the subscription the existing Web App resides
   * Select the Web App from the list
   * Visual Studio Code will ask you if you want to overwrite the existing content. Click Deploy to confirm
+
+### Custom Policies
+
+You will need to update the custom policies in Azure AD B2C
+
+* Follow all steps at [Get started with custom policies in Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-get-started?tabs=applications) to get familiar with the process
+* The article [Integrate REST API claims exchanges in your Azure AD B2C user journey as validation of user input](https://docs.microsoft.com/en-us/azure/active-directory-b2c/rest-api-claims-exchange-dotnet) will walk you through the changes you need to make but you can also reference the [SocalAndLocalAccounts](ops/b2c-custom-policy/SocialAndLocalAccounts/) directory in this project
+* If using the example in this project you will need to update the values
+  * Replace `yourtenant` with your actual b2c tenant
+  * Replace `ProxyIdentityExperienceFrameworkAppId` with your App Id
+  * Replace `IdentityExperienceFrameworkAppId` with your App Id
+  * Replace `facebook_clientid` with your Facebook client Id
+  * Replace `your-app-name` in the URLs provided with your app name
