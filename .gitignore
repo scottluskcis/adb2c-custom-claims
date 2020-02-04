@@ -349,5 +349,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# ignore customer policy start pack
-b2c-custom-policy/
+# ignore local files
+localfiles/
