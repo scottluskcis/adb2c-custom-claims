@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +23,11 @@ namespace Contoso.AADB2C.API.Controllers
         }
 
         [HttpPost("signup")]
-        public async Task<IActionResult> SignUp()
+        public async Task<IActionResult> SignUp([FromBody]InputClaimsModel model)
         {
             try
             {
-                var outputClaims = await _service.ProcessAsync(Request);
+                var outputClaims = await _service.SignUpAsync(model);
                 return Ok(outputClaims);
             }
             catch (ArgumentException argEx)
@@ -37,18 +35,46 @@ namespace Contoso.AADB2C.API.Controllers
                 _logger.LogError(argEx, $"Error occurred in {nameof(SignUp)}");
                 return Conflict(
                     new B2CResponseContent(
-                        argEx.Message, 
+                        argEx.Message,
                         HttpStatusCode.Conflict));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error occurred in {nameof(SignUp)}");
                 return StatusCode(
-                    StatusCodes.Status500InternalServerError, 
+                    StatusCodes.Status500InternalServerError,
                     new B2CResponseContent(
-                        "Unexpected error occured", 
+                        "Unexpected error occured",
                         HttpStatusCode.InternalServerError));
             }
         }
+
+        [HttpPost("signin")]
+        public async Task<IActionResult> SignIn([FromBody]InputClaimsModel model)
+        {
+            try
+            {
+                var outputClaims = await _service.SignInAsync(model);
+                return Ok(outputClaims);
+            }
+            catch (ArgumentException argEx)
+            {
+                _logger.LogError(argEx, $"Error occurred in {nameof(SignUp)}");
+                return Conflict(
+                    new B2CResponseContent(
+                        argEx.Message,
+                        HttpStatusCode.Conflict));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred in {nameof(SignUp)}");
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new B2CResponseContent(
+                        "Unexpected error occured",
+                        HttpStatusCode.InternalServerError));
+            }
+        }
+
     }
 }

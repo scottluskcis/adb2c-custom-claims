@@ -17,37 +17,41 @@ namespace Contoso.AADB2C.API.Services
             _logger = logger;
         }
 
-        public async Task<OutputClaimsModel> ProcessAsync(HttpRequest request)
+        public Task<OutputClaimsModel> SignUpAsync(InputClaimsModel model)
         {
-            _logger.LogInformation($"{nameof(IdentityService)}.{nameof(ProcessAsync)} - Start");
+            var result = Process(model, IdentityAction.SignUp);
+            return Task.FromResult(result);
+        }
 
-            var inputClaims = await ParseInputClaimsAsync(request);
-            var outputClaims = await SetOutputClaimsAsync(inputClaims);
+        public Task<OutputClaimsModel> SignInAsync(InputClaimsModel model)
+        {
+            var result = Process(model, IdentityAction.SignIn);
+            return Task.FromResult(result);
+        }
 
-            _logger.LogInformation($"{nameof(IdentityService)}.{nameof(ProcessAsync)} - End");
+        private OutputClaimsModel Process(InputClaimsModel model, IdentityAction action)
+        {
+            _logger.LogInformation($"{nameof(IdentityService)}.{nameof(Process)} - Start");
+
+            var isValid = action == IdentityAction.SignUp
+                ? ValidateInputClaims(model)
+                : true;
+            
+            if (!isValid)
+                throw new ArgumentException("Validation failed for InputClaims.");
+
+            var outputClaims = new OutputClaimsModel
+            {
+                loyaltyNumber = new Random().Next(100, 1000).ToString(),
+                action = $"{action.ToString()} - generate random number for loyaltyNumber"
+            };
+
+            _logger.LogInformation($"{nameof(IdentityService)}.{nameof(Process)} - End");
 
             return outputClaims;
         }
 
-        public Task<OutputClaimsModel> SetOutputClaimsAsync(InputClaimsModel inputClaims)
-        {
-            _logger.LogInformation($"{nameof(IdentityService)}.{nameof(SetOutputClaimsAsync)} - Start");
-
-            if (inputClaims == null)
-                throw new ArgumentNullException(nameof(inputClaims));
-
-            // Create an output claims object and set the loyalty number with a random value
-            var outputClaims = new OutputClaimsModel
-            {
-                loyaltyNumber = new Random().Next(100, 1000).ToString()
-            };
-
-            _logger.LogInformation($"{nameof(IdentityService)}.{nameof(SetOutputClaimsAsync)} - End");
-
-            return Task.FromResult(outputClaims);
-        }
-
-        public async Task<InputClaimsModel> ParseInputClaimsAsync(HttpRequest request)
+        private async Task<InputClaimsModel> ParseInputClaimsAsync(HttpRequest request)
         {
             _logger.LogInformation($"{nameof(IdentityService)}.{nameof(ParseInputClaimsAsync)} - Start");
 
@@ -69,14 +73,20 @@ namespace Contoso.AADB2C.API.Services
             if (inputClaims == null)
                 throw new ArgumentException("Can not deserialize input claims");
 
-            // Run a simple input validation
-            if (inputClaims.firstName.ToLower() == "test")
-                throw new ArgumentException("Test name is not valid, please provide a valid name");
-
             _logger.LogInformation($"{nameof(IdentityService)}.{nameof(ParseInputClaimsAsync)} - End");
 
             // return the parsed claims
             return inputClaims;
+        }
+
+        private bool ValidateInputClaims(InputClaimsModel inputClaims)
+        {
+            // Run a simple input validation
+            if (inputClaims.firstName.ToLower() == "test")
+                throw new ArgumentException("Test name is not valid, please provide a valid name");
+
+            // validation passes
+            return true;
         }
 
     }

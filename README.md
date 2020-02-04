@@ -8,12 +8,13 @@ testing out custom claims and policy in azure ad b2c
 * [Set up sign-in with an Azure Active Directory account using custom policies in Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-azure-ad-single-tenant-custom?tabs=applications)
 * [Integrate REST API claims exchanges in your Azure AD B2C user journey as validation of user input](https://docs.microsoft.com/en-us/azure/active-directory-b2c/rest-api-claims-exchange-dotnet)
 * [Add REST API claims exchanges to custom policies in Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-rest-api-claims-exchange)
-* [Azure Active Directory B2C: Use custom attributes in a custom profile edit policy](https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-custom-attributes)
-* [Publish an ASP.NET Core app to Azure with Visual Studio Code](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1)
+* [Define a RESTful technical profile in an Azure Active Directory B2C custom policy](https://docs.microsoft.com/en-us/azure/active-directory-b2c/restful-technical-profile)
+* [Introduction to Azure AD B2C custom policies](https://github.com/azure-ad-b2c/ief-wiki/wiki)
 
 ## Other Research to Consider
 
-* [Define a RESTful technical profile in an Azure Active Directory B2C custom policy](https://docs.microsoft.com/en-us/azure/active-directory-b2c/restful-technical-profile)
+* [Azure Active Directory B2C: Use custom attributes in a custom profile edit policy](https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-custom-attributes)
+* [Publish an ASP.NET Core app to Azure with Visual Studio Code](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1)
 * [Secure RESTful APIs with basic auth](https://docs.microsoft.com/en-us/azure/active-directory-b2c/secure-rest-api-dotnet-basic-auth)
 * [Secure RESTful APIs with certificate auth](https://docs.microsoft.com/en-us/azure/active-directory-b2c/secure-rest-api-dotnet-certificate-auth)
 
