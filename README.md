@@ -1,6 +1,6 @@
-# adb2c-custom-claims
+# Azure AD B2C and Custom Claims
 
-testing out custom claims and policy in azure ad b2c
+Researching and testing out custom claims and policy in Azure AD B2C
 
 ## Links used for Research
 
