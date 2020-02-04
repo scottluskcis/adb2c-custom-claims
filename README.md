@@ -17,6 +17,7 @@ Researching and testing out custom claims and policy in Azure AD B2C using Ident
 * [Publish an ASP.NET Core app to Azure with Visual Studio Code](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1)
 * [Secure RESTful APIs with basic auth](https://docs.microsoft.com/en-us/azure/active-directory-b2c/secure-rest-api-dotnet-basic-auth)
 * [Secure RESTful APIs with certificate auth](https://docs.microsoft.com/en-us/azure/active-directory-b2c/secure-rest-api-dotnet-certificate-auth)
+* [Azure Active Directory B2C: Use custom attributes in a custom profile edit policy](https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-custom-attributes)
 
 ## AADB2C API
 
@@ -42,7 +43,7 @@ To provision an Azure App Service resource to host the API in Azure:
 
     ```powershell
     az group deployment create `
-    -g <your resource group name> `
+    --resource-group <your resource group name> `
     --template-file ops\aadb2c.api.azuredeploy.json `
     --parameters @ops\aadb2c.api.params.json
     ```
@@ -53,11 +54,11 @@ To provision an Azure App Service resource to host the API in Azure:
     dotnet publish -c Release -o ./publish
     ```
 
-* In VS Code follow these steps:
-  * Right click the publish folder and select Deploy to Web App...
-  * Select the subscription the existing Web App resides
-  * Select the Web App from the list
-  * Visual Studio Code will ask you if you want to overwrite the existing content. Click Deploy to confirm
+* In `VS Code` follow these steps:
+  * Right click the `.publish` folder and select Deploy to Web App...
+  * Select the **subscription** the existing Web App resides
+  * Select the **Web App** from the list
+  * Visual Studio Code will ask you if you want to overwrite the existing content. Click **Deploy** to confirm
 
 ### Custom Policies
 
